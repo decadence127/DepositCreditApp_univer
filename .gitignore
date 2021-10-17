@@ -1,0 +1,6 @@
+*.doc
+
+DepositKreditApp/obj
+DepositKreditApp/bin
+
+appsettings.json
