@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router';
 import { BANK_ROUTE } from '../Utils/RouteNames';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import RouteButton from '../Components/UI/RouteButton';

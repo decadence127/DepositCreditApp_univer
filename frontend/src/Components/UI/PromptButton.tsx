@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button, { ButtonProps } from '@mui/material/Button';
-import { ThemeProvider, styled} from '@mui/material/styles';
-import { green, orange, purple } from '@mui/material/colors';
+import { styled } from '@mui/material/styles';
+import { green} from '@mui/material/colors';
 
 
 interface Props{
