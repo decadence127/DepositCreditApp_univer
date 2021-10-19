@@ -1,4 +1,5 @@
 import { http } from "../apiService/useAxios";
+import {ACCOUNT_CHARTS} from "../Utils/ApiRoutes";
 
 // export type AccountChart = {
 //   id: string,
@@ -14,7 +15,7 @@ export type AccountChart = { // mock data type
 }
 
 export const fetchAccountCharts = async ():Promise<AccountChart[]> =>{ // function returns Promise of AccountChart[] type 
-    const {data} = await http.get<AccountChart[]>("/posts");
+    const {data} = await http.get<AccountChart[]>(ACCOUNT_CHARTS);
   
     return data;
 
