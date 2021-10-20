@@ -82,10 +82,10 @@ function Row(props: Bank) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Client Id</TableCell>
-                    <TableCell>Client Name</TableCell>
-                    <TableCell align="right">Clients email</TableCell>
-                    <TableCell align="right">Clients balance</TableCell>
+                    <TableCell>Client's Id</TableCell>
+                    <TableCell>Client's Name</TableCell>
+                    <TableCell align="right">Client's email</TableCell>
+                    <TableCell align="right">Client's balance</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

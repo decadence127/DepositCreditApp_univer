@@ -35,6 +35,7 @@ const BankCreateCard: React.FC<Props> = ({setReload, setOpen, isOpen}) => {
     const response = createBank({BankTitle: bankTitle!, Balance: bankBalance!});
     console.log(response);
     setReload(true);
+    setOpen(false);
     
   }
   const handleClose = () => setOpen(false);
