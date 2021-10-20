@@ -13,8 +13,8 @@ export type Client = {
   residence: string,
   monthlyIncome: number,
   balance: number,
-  depositAccounts: any,
-  creditAccounts: any
+  depositAccounts: [],
+  creditAccounts: []
 }
 
 export const fetchBankClients = async(id:string | undefined):Promise<Client[]> =>{

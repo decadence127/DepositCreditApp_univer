@@ -14,16 +14,38 @@ import { Bank } from '../../queryHandlers/bankQuery';
 import { Client, fetchBankClients } from '../../queryHandlers/clientQuery';
 import { useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import ClientModal from './ClientModal';
 
 function Row(props: Bank) {
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [clients, setClients] = useState<Client[]>()
   const [loading, setLoading] = useState<boolean>(true);
+  const [currentClient, setCurrentClient] = useState<Client | undefined>({
+    id: "",
+    name: "",
+    passport: "",
+    birthDate: "",
+    phone: "",
+    email: "",
+    residence: "",
+    monthlyIncome: 0,
+    balance: 0,
+    depositAccounts: [],
+    creditAccounts: [],
+  });
   const clickHandler = async (id: string)=>{
     const response = await fetchBankClients(id);
 
     setClients(response);
     setLoading(false);
+  }
+  const clickClientHandler = (e:React.MouseEvent) =>{
+    console.log(e.currentTarget.textContent);
+    const id = e.currentTarget.textContent;
+    const foundClient = clients!.find(client=> client.id === e.currentTarget.textContent);
+    setCurrentClient(foundClient);
+    setOpenModal(true);
   }
 
 
@@ -68,8 +90,8 @@ function Row(props: Bank) {
                 </TableHead>
                 <TableBody>
                   {!loading ? <>{clients!.length ? <>{clients!.map((clientRow) => (
-                    <TableRow key={clientRow.id}>
-                      <TableCell component="th" scope="row">
+                    <TableRow key={clientRow.id} >
+                      <TableCell component="th" scope="row" sx={{"&:hover": {cursor: "pointer", color: "gray", borderBottom: "1px dotted black"}}} onClick={event => clickClientHandler(event)}>
                         {clientRow.id}
                       </TableCell>
                       <TableCell>{clientRow.name}</TableCell>
@@ -83,6 +105,7 @@ function Row(props: Bank) {
           </Collapse>
         </TableCell>
       </TableRow>
+      {<ClientModal client={currentClient!} setOpen={setOpenModal} isOpen={openModal}/>}
     </React.Fragment>
   );
 }
