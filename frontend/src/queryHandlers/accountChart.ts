@@ -1,6 +1,7 @@
 import { http } from "../apiService/useAxios";
 import { ACCOUNT_CHARTS } from "../Utils/ApiRoutes";
 
+
 export type AccountChart = {
   id: string,
   accountType: number,
