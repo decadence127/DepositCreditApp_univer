@@ -7,9 +7,8 @@ enum StatusCode {
   InternalServerError = 500,
 }
 
-const headers: Readonly<any> = { // cors pls sdelai molu
+const headers: Readonly<any> = { 
   'Content-Type' : 'application/json; charset=UTF-8',
-  "X-Requested-With": "XMLHttpRequest",
 };
 
 
@@ -24,7 +23,6 @@ class Http {
     const http = axios.create({
       baseURL: BASE_URL,
       headers,
-      withCredentials: true,
     });
 
 

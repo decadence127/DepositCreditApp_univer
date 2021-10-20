@@ -1,0 +1,20 @@
+.bankBox {
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-weight: 600;
+  margin: 10px 20px;
+  text-align: center;
+  min-width: 250px;
+  background-color: #4caf50;
+  border-color: rgb(97, 96, 96);
+  border: 1;
+  border-radius: 20px;
+  padding: 12px 20px;
+  user-select: none;
+}
+.bankBox:hover {
+  background-color: #388e3c;
+  cursor: pointer;
+}
