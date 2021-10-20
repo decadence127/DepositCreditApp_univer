@@ -7,8 +7,11 @@ enum StatusCode {
   InternalServerError = 500,
 }
 
-const headers: Readonly<any> = {
-  'Content-Type' : 'application/json; charset=UTF-8'
+
+const headers: Readonly<any> = { 
+  'Content-Type' : 'application/json; charset=UTF-8',
+
+
 };
 
 
@@ -23,6 +26,7 @@ class Http {
     const http = axios.create({
       baseURL: BASE_URL,
       headers
+
     });
 
 
