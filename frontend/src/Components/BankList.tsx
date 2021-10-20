@@ -25,7 +25,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
   };
 
   return (
-    <TableContainer component={Paper} sx={{my: 3, maxWidth: "100%"}}>
+    <TableContainer component={Paper} sx={{my: 3, minWidth: "753px", maxWidth: "100%", ['@media (max-width:800px)']:{minWidth: 0}}}>
       <Table aria-label="bank list">
         <TableHead>
           <TableRow>
