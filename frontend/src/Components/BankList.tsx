@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction } from 'react';
 import { Bank } from '../queryHandlers/bankQuery';
 import { AccountChart } from '../queryHandlers/accountChart';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
@@ -36,7 +36,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {banks?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(bank=>(<Row {...bank}/>))}
+          {banks?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(bank=>(<Row bank={bank} setReload={setReload}/>))}
         </TableBody>
       </Table>      
       <TablePagination

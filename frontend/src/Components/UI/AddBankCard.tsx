@@ -13,7 +13,7 @@ const AddBankCard:React.FC<Props> = ({setReload}) => {
   return (
     <>
     <Box className={classes.bankBox} onClick={clickHandler}>
-      <p>Добавить</p>
+      <p>Add a new bank</p>
   </Box>
   {openAddModal && <BankCreateCard setReload={setReload}isOpen={openAddModal} setOpen={setOpenAddModal}/>}
   </>
