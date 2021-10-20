@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import { Bank } from '../queryHandlers/bankQuery';
 import { AccountChart } from '../queryHandlers/accountChart';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
@@ -8,10 +8,11 @@ import TablePagination from '@mui/material/TablePagination';
 interface Props{
   banks?: Bank[],
   accountCharts?: AccountChart[],
+  setReload: React.Dispatch<SetStateAction<boolean>>
 }
 
 
-const BankList:React.FC<Props> = ({ banks, accountCharts }) => {
+const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -47,8 +48,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts }) => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      <AddBankCard></AddBankCard>
-
+      <AddBankCard setReload={setReload}/>
     </TableContainer>
   );
 

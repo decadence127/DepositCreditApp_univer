@@ -1,7 +1,12 @@
 import { http } from "../apiService/useAxios";
 import { BANK } from "../Utils/ApiRoutes";
 import { AccountChart } from "./accountChart";
-import { IBankCreationType } from "../Components/UI/BankCreateCard";
+
+export type IBankCreationType = {
+  BankTitle: string;
+  Balance: number;
+
+}
 
 export type Bank = {
     id: string,

@@ -1,9 +1,11 @@
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import classes from "./bankCard.module.css";
 import BankCreateCard from './BankCreateCard';
-
-const AddBankCard:React.FC = () => {
+interface Props{
+  setReload: React.Dispatch<SetStateAction<boolean>>
+}
+const AddBankCard:React.FC<Props> = ({setReload}) => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const clickHandler = () =>{
      setOpenAddModal(!openAddModal)
@@ -13,7 +15,7 @@ const AddBankCard:React.FC = () => {
     <Box className={classes.bankBox} onClick={clickHandler}>
       <p>Добавить</p>
   </Box>
-  {openAddModal && <BankCreateCard/>}
+  {openAddModal && <BankCreateCard setReload={setReload}isOpen={openAddModal} setOpen={setOpenAddModal}/>}
   </>
   );
 };

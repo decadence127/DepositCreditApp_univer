@@ -11,7 +11,8 @@ const BankPage: React.FC = () => {
   const [banks, setBanks] = useState<Bank[]>();
   const [accountCharts, setAccountCharts] = useState<AccountChart[]>();
   const [loading, setLoading] = useState<boolean>(true);
-  
+  const [reload, setReload] = useState(false);
+
   useEffect(()=>{
     const fetchData = async() =>{
       const charts = await fetchAccountCharts();
@@ -22,12 +23,12 @@ const BankPage: React.FC = () => {
     }
 
     fetchData();
-  }, [])
+  }, [reload])
 
   return (
     <React.Fragment>
     {!loading ?<>
-      <BankList banks={banks} accountCharts={accountCharts} />
+      <BankList banks={banks} accountCharts={accountCharts} setReload={setReload} />
       <RouteButton path={CASHIER_ROUTE}>
           <LocalAtmIcon sx={{fontSize: 48}}/>
       </RouteButton>
