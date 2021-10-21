@@ -1,51 +1,74 @@
 import axios, { AxiosError } from "axios";
-import { useSnackbar } from "notistack";
 import { ServerError } from "../apiService/errorHandler/ErrorResponse";
 import { http } from "../apiService/useAxios";
 import { BASE_URL, CLIENT } from "../Utils/ApiRoutes";
+import { AccountChart } from "./accountChart";
+import { Deposit } from "./depositQuery";
 
 export type CreationClientType = {
-  name: string,
-  passport: string,
-  birthDate: string,
-  phone: string,
-  email: string,
-  residence: string,
-  monthlyIncome: string,
-  balance: string,
-  bankId: string
-}
-
+  name: string;
+  passport: string;
+  birthDate: string;
+  phone: string;
+  email: string;
+  residence: string;
+  monthlyIncome: string;
+  balance: string;
+  bankId: string;
+};
+type InterestAccount = {
+  id: string;
+  balanceCharge: string;
+};
+export type GetDeposit = {
+  accountChart: AccountChart;
+  isActive: boolean;
+  activeBefore: string;
+  id: string;
+  depositBalance: string;
+  interestAccount: InterestAccount;
+};
+export type GetCredit = {
+  id: string;
+  creditBalance: string;
+  isActive: boolean;
+  activeBefore: string;
+  paymentsLeft: string;
+  accountChart: AccountChart;
+};
 export type Client = {
-  id: string,
-  name: string,
-  passport: string,
-  birthDate: string,
-  phone: string,
-  email: string,
-  residence: string,
-  monthlyIncome: number,
-  balance: number,
-  depositAccounts: [],
-  creditAccounts: []
-}
+  id: string;
+  name: string;
+  passport: string;
+  birthDate: string;
+  phone: string;
+  email: string;
+  residence: string;
+  monthlyIncome: number;
+  balance: number;
+  depositAccounts: GetDeposit[];
+  creditAccounts: Client[];
+};
 
-export const fetchBankClients = async(id:string | undefined):Promise<any> =>{
-  try
-  {
+export const fetchBankClients = async (
+  id: string | undefined
+): Promise<any> => {
+  try {
     const { data } = await http.get<Client[]>(BASE_URL + id + CLIENT);
     console.log(data);
-    
+
     return data;
-  }catch(error){
+  } catch (error) {
     if (axios.isAxiosError(error)) {
       const serverError = error as AxiosError<ServerError>;
-        http.handleError(serverError);
+      http.handleError(serverError);
     }
   }
-}
-export const postBankClient = async(client:CreationClientType):Promise<any> =>{
-  try{
+};
+export const postBankClient = async (
+  client: CreationClientType
+): Promise<any> => {
+  try {
     const formData = new FormData();
     formData.append("Name", client.name);
     formData.append("Passport", client.passport);
@@ -56,15 +79,14 @@ export const postBankClient = async(client:CreationClientType):Promise<any> =>{
     formData.append("MonthlyIncome", client.monthlyIncome);
     formData.append("Balance", client.balance);
     formData.append("BankId", client.bankId);
-    const { data } = await http.post<FormData>(CLIENT,formData)
+    const { data } = await http.post<FormData>(CLIENT, formData);
     console.log(data);
-    
+
     return data;
-  }catch(error)
-  {
+  } catch (error) {
     if (axios.isAxiosError(error)) {
       const serverError = error as AxiosError<ServerError>;
-        http.handleError(serverError)
+      http.handleError(serverError);
     }
   }
-}
+};
