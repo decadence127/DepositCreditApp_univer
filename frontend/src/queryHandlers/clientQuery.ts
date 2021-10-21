@@ -29,12 +29,19 @@ export type Client = {
   creditAccounts: []
 }
 
-export const fetchBankClients = async(id:string | undefined):Promise<Client[]> =>{
-  
-  const { data } = await http.get<Client[]>(BASE_URL + id + CLIENT);
-  console.log(data);
-  
-  return data;
+export const fetchBankClients = async(id:string | undefined):Promise<any> =>{
+  try
+  {
+    const { data } = await http.get<Client[]>(BASE_URL + id + CLIENT);
+    console.log(data);
+    
+    return data;
+  }catch(error){
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+        http.handleError(serverError)
+    }
+  }
 }
 export const postBankClient = async(client:CreationClientType):Promise<any> =>{
   try{
