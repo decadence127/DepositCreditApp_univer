@@ -1,10 +1,21 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction } from 'react';
 import { Bank } from '../queryHandlers/bankQuery';
 import { AccountChart } from '../queryHandlers/accountChart';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import Row from "./UI/TableRow"
 import AddBankCard from './UI/AddBankCard';
 import TablePagination from '@mui/material/TablePagination';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ruRU } from '@mui/material/locale';
+
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  ruRU,
+);
 interface Props{
   banks?: Bank[],
   accountCharts?: AccountChart[],
@@ -25,18 +36,19 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
   };
 
   return (
-    <TableContainer component={Paper} sx={{my: 3, maxWidth: "100%"}}>
+    <ThemeProvider theme={theme}>
+    <TableContainer component={Paper} sx={{my: 3, minWidth: "753px", maxWidth: "100%", ['@media (max-width:800px)']:{minWidth: 0}}}>
       <Table aria-label="bank list">
         <TableHead>
           <TableRow>
             <TableCell/>
-            <TableCell component="th" scope="row">Bank ID</TableCell>
-            <TableCell align="left">Bank Name</TableCell>
-            <TableCell align="right">Bank Balance</TableCell>
+            <TableCell component="th" scope="row">ID Банка</TableCell>
+            <TableCell align="left">Банк</TableCell>
+            <TableCell align="right">Текущий баланс банка</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {banks?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(bank=>(<Row {...bank}/>))}
+          {banks?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(bank=>(<Row bank={bank} setReload={setReload}/>))}
         </TableBody>
       </Table>      
       <TablePagination
@@ -50,6 +62,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
         />
       <AddBankCard setReload={setReload}/>
     </TableContainer>
+    </ThemeProvider>
   );
 
 };

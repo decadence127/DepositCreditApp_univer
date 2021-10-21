@@ -1,11 +1,6 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { BASE_URL } from "../Utils/ApiRoutes";
-
-enum StatusCode {
-  NotFound = 404,
-  Forbidden = 403,
-  InternalServerError = 500,
-}
+import { BadRequest, ForbiddenError, InternalServerError, NotFoundError, ServerError, StatusCode } from "./errorHandler/ErrorResponse";
 
 
 const headers: Readonly<any> = { 
@@ -13,7 +8,6 @@ const headers: Readonly<any> = {
 
 
 };
-
 
 class Http {
   private instance: AxiosInstance | null = null; // instance if undefined = null or AxiosInstance
@@ -51,18 +45,21 @@ class Http {
   }
 
 
-  private handleError(error: any) { 
-    const { status } = error;
-
-    switch (status) {
+ handleError(error: AxiosError<ServerError>) { 
+    const { response } = error;
+  
+    switch (response!.status) {
       case StatusCode.InternalServerError: {
-        throw new Error("Server-sided error")
+        throw new InternalServerError(response!, response!.status);
       }
       case StatusCode.Forbidden: {
-        throw new Error("You cant access this data")
+        throw new ForbiddenError(response!, response!.status);
       }
       case StatusCode.NotFound: {
-        throw new Error("Data was not found")
+        throw new NotFoundError(response!, response!.status)
+      }
+      case StatusCode.BadRequest:{
+        throw new BadRequest(response!, response!.status)
       }
     }
 

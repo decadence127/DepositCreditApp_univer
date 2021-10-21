@@ -62,7 +62,7 @@ const BankCreateCard: React.FC<Props> = ({setReload, setOpen, isOpen}) => {
     <Typography variant="h6" component="h2">Введите данные</Typography>
     <TextField value={bankTitle}onChange={e=> setBankTitle(e.target.value!)} id="standard-basic" label="Название банка" variant="standard"/>
     <TextField  type="number" value={bankBalance} onChange={e=> setBankBalance(Number(e.target.value!))}id="standard-basic" label="Текущий баланс банка" variant="standard"/>
-    <Button sx={{marginTop: 5}} variant="contained" onClick={clickHandler}>Добавить</Button>
+    <Button color="success"sx={{marginTop: 5}} variant="contained" onClick={clickHandler}>Добавить</Button>
     </Paper>
     </Box>
     </Fade>

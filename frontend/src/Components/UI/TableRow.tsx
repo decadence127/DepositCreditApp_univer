@@ -15,10 +15,17 @@ import { Client, fetchBankClients } from '../../queryHandlers/clientQuery';
 import { useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import ClientModal from './ClientModal';
+import CreationModal from './CreationModal';
 
-function Row(props: Bank) {
-  const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+interface Props{
+  bank: Bank,
+  setReload: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Row: React.FC<Props> = ({bank, setReload}) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openCreationModal, setOpenCreationModal] = useState<boolean>(false);
   const [clients, setClients] = useState<Client[]>()
   const [loading, setLoading] = useState<boolean>(true);
   const [currentClient, setCurrentClient] = useState<Client | undefined>({
@@ -34,7 +41,11 @@ function Row(props: Bank) {
     depositAccounts: [],
     creditAccounts: [],
   });
-  const clickHandler = async (id: string)=>{
+  window.addEventListener('click', (event: MouseEvent):void =>{
+    event.preventDefault();
+    setOpen(false);
+  })
+  const clickHandler = async (id: string) =>{
     const response = await fetchBankClients(id);
 
     setClients(response);
@@ -47,7 +58,10 @@ function Row(props: Bank) {
     setCurrentClient(foundClient);
     setOpenModal(true);
   }
-
+  const addClientHandler = (e:React.MouseEvent)=>{
+    e.preventDefault();
+    setOpenCreationModal(true);
+  }
 
   return (
     <React.Fragment>
@@ -56,36 +70,37 @@ function Row(props: Bank) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => {
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation()
               setOpen(!open)
-              clickHandler(props.id)
+              clickHandler(bank.id)
             }}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {props.id}
+          {bank.id}
         </TableCell>
         <TableCell align="left">
-          {props.bankTitle}
+          {bank.bankTitle}
         </TableCell>
-        <TableCell align="right">{props.balance}</TableCell>
+        <TableCell align="right">{bank.balance}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                Clients
+                Клиенты
               </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table size="small" aria-label="banks">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Client's Id</TableCell>
-                    <TableCell>Client's Name</TableCell>
-                    <TableCell align="right">Client's email</TableCell>
-                    <TableCell align="right">Client's balance</TableCell>
+                    <TableCell>ID Клиента</TableCell>
+                    <TableCell>Имя клиента</TableCell>
+                    <TableCell align="right">E-mail клиента</TableCell>
+                    <TableCell align="right">Баланс клиента</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -98,13 +113,17 @@ function Row(props: Bank) {
                       <TableCell align="right">{clientRow.email}</TableCell>
                       <TableCell align="right">{clientRow.balance}</TableCell>
                     </TableRow>
-                  ))}</> : <Typography textAlign="right">No clients yet</Typography> }</> : <CircularProgress />}
+                  ))}</> : <TableCell colSpan={4}><Typography textAlign="center">Клиентов еще нет</Typography></TableCell> }</> : <CircularProgress />}
+                            <TableRow sx={{"&:hover": {cursor: "pointer", backgroundColor:"#fafafa"}}}>
+                                <TableCell colSpan={4} onClick={event => addClientHandler(event)}><Typography textAlign="center" fontWeight="700">Добавить</Typography></TableCell>
+                            </TableRow>
                 </TableBody>
               </Table>
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
+      {<CreationModal setReload={setReload} bankId={bank.id} setOpen={setOpenCreationModal} isOpen={openCreationModal}/>}
       {<ClientModal client={currentClient!} setOpen={setOpenModal} isOpen={openModal}/>}
     </React.Fragment>
   );

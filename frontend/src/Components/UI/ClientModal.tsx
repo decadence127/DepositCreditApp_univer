@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { Client } from '../../queryHandlers/clientQuery';
+import { Button } from '@mui/material';
 
 interface Props{
   client: Client,
@@ -73,6 +74,14 @@ const ClientModal: React.FC<Props> = ({client, setOpen, isOpen}) => {
             <Typography id="transition-modal-description">
               Депозитные счета: {client.depositAccounts.length || <Typography id="transition-modal-description">Отсутствуют</Typography>}
             </Typography>
+            <Box mt={3}display="flex" gap={3}>
+            <Button variant="contained" color="success">
+              Добавить депозитный счет
+            </Button>
+            <Button variant="contained" color="success">
+              Добавить кредитный счет
+            </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
