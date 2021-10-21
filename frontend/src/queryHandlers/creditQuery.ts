@@ -34,3 +34,41 @@ export const postCredit = async (
     }
   }
 };
+export const payCreditDebt = async (
+  creditId: string,
+  clientId: string,
+  payment: number
+): Promise<any> => {
+  try {
+    const formData = new FormData();
+    formData.append("Payment", payment.toString());
+    const { data } = await http.post<FormData>(
+      CLIENT + "/" + clientId + "/Credits/" + creditId + "/Pay",
+      formData
+    );
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};
+export const rechargeCredit = async (
+  creditId: string,
+  clientId: string
+): Promise<any> => {
+  try {
+    const { data } = await http.post<FormData>(
+      CLIENT + "/" + clientId + "/Credits/" + creditId + "/Recharge"
+    );
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};

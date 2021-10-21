@@ -3,7 +3,6 @@ import { ServerError } from "../apiService/errorHandler/ErrorResponse";
 import { http } from "../apiService/useAxios";
 import { BASE_URL, CLIENT } from "../Utils/ApiRoutes";
 import { AccountChart } from "./accountChart";
-import { Deposit } from "./depositQuery";
 
 export type CreationClientType = {
   name: string;
@@ -47,7 +46,7 @@ export type Client = {
   monthlyIncome: number;
   balance: number;
   depositAccounts: GetDeposit[];
-  creditAccounts: Client[];
+  creditAccounts: GetCredit[];
 };
 
 export const fetchBankClients = async (

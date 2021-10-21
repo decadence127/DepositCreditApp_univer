@@ -20,27 +20,11 @@ import {
 import { Credit, postCredit } from "../../queryHandlers/creditQuery";
 import { Deposit, postDeposit } from "../../queryHandlers/depositQuery";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { creationAccountStyle } from "./modalStyle";
 
 interface Props {
   clientId: string;
 }
-
-const style = {
-  position: "absolute" as "absolute",
-  display: "flex",
-  flexDirection: "column" as "column",
-  alignItems: "center",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  minWidth: 450,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
-};
 
 const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
   let component = null;
@@ -98,7 +82,6 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
   };
   const handleCreditRegistration = (e: React.MouseEvent) => {
     const response = postCredit(currentCredit, clientId);
-    console.log(currentCredit);
 
     console.log(response);
   };
@@ -119,7 +102,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
           {loading ? (
             <LinearProgress />
           ) : (
-            <Box sx={{ ...style }}>
+            <Box sx={{ ...creationAccountStyle }}>
               <Typography
                 id="transition-modal-title"
                 variant="h6"
@@ -206,7 +189,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
           {loading ? (
             <LinearProgress />
           ) : (
-            <Box sx={{ ...style }}>
+            <Box sx={{ ...creationAccountStyle }}>
               <Typography
                 id="transition-modal-title"
                 variant="h6"
@@ -292,7 +275,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
 
   return (
     <React.Fragment>
-      <Box mt={3} display="flex" gap={3}>
+      <Box mt={3} display="flex" justifyContent="space-between" gap={3}>
         <Button
           onClick={clickHandlerDeposit}
           variant="contained"
