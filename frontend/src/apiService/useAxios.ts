@@ -2,8 +2,11 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { BASE_URL } from "../Utils/ApiRoutes";
 import { BadRequest, ForbiddenError, InternalServerError, NotFoundError, ServerError, StatusCode } from "./errorHandler/ErrorResponse";
 
+
 const headers: Readonly<any> = { 
   'Content-Type' : 'application/json; charset=UTF-8',
+
+
 };
 
 class Http {
@@ -16,7 +19,8 @@ class Http {
   initHttp() { // init method
     const http = axios.create({
       baseURL: BASE_URL,
-      headers,
+      headers
+
     });
 
 
