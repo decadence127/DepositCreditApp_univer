@@ -1,23 +1,62 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { GetDeposit } from "../../queryHandlers/clientQuery";
+import { Client, GetDeposit } from "../../queryHandlers/clientQuery";
 import { Typography } from "@material-ui/core";
+import { Button } from "@mui/material";
+import {
+  rechargeDeposit,
+  closeDeposit,
+} from "../../queryHandlers/depositQuery";
+
 interface Props {
   deposit: GetDeposit;
+  client: Client;
 }
 
-export const DepositBox: React.FC<Props> = ({ deposit }) => {
+export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
+  const rechargeHandler = async (e: React.MouseEvent) => {
+    const response = await rechargeDeposit(deposit.id, client.id);
+    console.log(response);
+  };
+  const closeDepositHandler = async (e: React.MouseEvent) => {
+    const response = await closeDeposit(deposit.id, client.id);
+    console.log(response);
+  };
   return (
-    <Box sx={{ p: 2, border: "1px dashed grey" }}>
-      <Typography>
-        {" "}
+    <Box
+      sx={{
+        p: 2,
+        border: "1px dashed grey",
+      }}
+    >
+      <Typography style={{ fontWeight: "bold" }}>
         <span style={{ fontWeight: "normal" }}>Номер счета:</span>
         {deposit.id}
       </Typography>
+      <Typography>Тип депозита: {deposit.accountChart.chartName}</Typography>
       <Typography>Дата окончания: {deposit.activeBefore}</Typography>
       <Typography>Сумма депозита: {deposit.depositBalance}</Typography>
-      <Typography>Тип депозита: {deposit.accountChart.chartName}</Typography>
       <Typography>Счет активен: {deposit.isActive ? "Да" : "Нет"}</Typography>
+      <Typography>Счет Вклада: {deposit.interestAccount.id}</Typography>
+      <Typography>
+        Сумма дохода: {deposit.interestAccount.balanceCharge}
+      </Typography>
+      <Button
+        onClick={rechargeHandler}
+        sx={{ mr: 2, mt: 2 }}
+        variant="outlined"
+        color="warning"
+      >
+        Закрыть банковский месяц
+      </Button>
+      <Button
+        onClick={closeDepositHandler}
+        sx={{ ml: 8, mt: 2 }}
+        variant="outlined"
+        color="error"
+      >
+        Закрыть депозит
+      </Button>
     </Box>
   );
 };

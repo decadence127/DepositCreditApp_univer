@@ -33,3 +33,37 @@ export const postDeposit = async (
     }
   }
 };
+export const rechargeDeposit = async (
+  depositId: string,
+  clientId: string
+): Promise<any> => {
+  try {
+    const { data } = await http.post<FormData>(
+      CLIENT + "/" + clientId + "/Deposits/" + depositId + "/Recharge"
+    );
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};
+export const closeDeposit = async (
+  depositId: string,
+  clientId: string
+): Promise<any> => {
+  try {
+    const { data } = await http.post<FormData>(
+      CLIENT + "/" + clientId + "/Deposits/" + depositId + "/Close"
+    );
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};

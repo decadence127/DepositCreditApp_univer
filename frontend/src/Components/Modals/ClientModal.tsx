@@ -7,27 +7,15 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import { Client } from "../../queryHandlers/clientQuery";
 import CreateAccountModal from "./CreateAccountModal";
+import CreditBox from "../Boxes/CreditBox";
+import { clientModalStyle } from "./modalStyle";
+
 interface Props {
   client: Client;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 600,
-  maxHeight: "600px",
-  overflow: "auto",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 2,
-};
 
 const ClientModal: React.FC<Props> = ({
   setReload,
@@ -54,7 +42,7 @@ const ClientModal: React.FC<Props> = ({
         }}
       >
         <Fade in={isOpen}>
-          <Box sx={style}>
+          <Box sx={clientModalStyle}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               {client.name}
             </Typography>
@@ -80,9 +68,11 @@ const ClientModal: React.FC<Props> = ({
               Город прописки: {client.residence}
             </Typography>
             <Typography id="transition-modal-description">
-              Кредитные счета:{" "}
+              Кредитные счета:
               {client.creditAccounts.length ? (
-                "helo"
+                client.creditAccounts.map((credit) => (
+                  <CreditBox credit={credit} client={client} />
+                ))
               ) : (
                 <Typography id="transition-modal-description">
                   Отсутствуют
@@ -93,7 +83,7 @@ const ClientModal: React.FC<Props> = ({
               Депозитные счета:
               {client.depositAccounts.length ? (
                 client.depositAccounts.map((deposit) => (
-                  <DepositBox deposit={deposit} />
+                  <DepositBox deposit={deposit} client={client} />
                 ))
               ) : (
                 <Typography id="transition-modal-description">

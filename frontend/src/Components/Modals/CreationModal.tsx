@@ -9,6 +9,7 @@ import {
   postBankClient,
 } from "../../queryHandlers/clientQuery";
 import { Button, TextField } from "@mui/material";
+import { style } from "./modalStyle";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,21 +17,6 @@ interface Props {
   bankId: string;
   setReload: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const style = {
-  position: "absolute" as "absolute",
-  display: "flex",
-  flexDirection: "column" as "column",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 2,
-};
 
 const ClientModal: React.FC<Props> = ({
   setReload,
