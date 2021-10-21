@@ -130,7 +130,7 @@ const Row: React.FC<Props> = ({ bank, setReload }) => {
                                 {clientRow.email}
                               </TableCell>
                               <TableCell align="right">
-                                {clientRow.balance} руб.
+                                {clientRow.balance.toFixed(2)} руб.
                               </TableCell>
                             </TableRow>
                           ))}
