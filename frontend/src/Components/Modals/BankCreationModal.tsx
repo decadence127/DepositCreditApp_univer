@@ -41,8 +41,8 @@ const BankCreationModal: React.FC<Props> = ({ setReload, setOpen, isOpen }) => {
   const handleClose = () => setOpen(false);
   return (
     <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
+      aria-labelledby="creation-modal-title"
+      aria-describedby="creation-modal-description"
       open={isOpen}
       onClose={handleClose}
       closeAfterTransition

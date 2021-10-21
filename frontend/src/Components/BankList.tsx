@@ -48,9 +48,9 @@ const BankList: React.FC<Props> = ({ banks, setReload }) => {
         component={Paper}
         sx={{
           my: 3,
-          minWidth: "753px",
+          minWidth: "1000px",
           maxWidth: "100%",
-          ["@media (max-width:800px)"]: { minWidth: 0 },
+          ["@media (max-width:1010px)"]: { minWidth: 0 },
         }}
       >
         <Table aria-label="bank list">

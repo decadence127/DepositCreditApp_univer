@@ -64,16 +64,16 @@ class Http {
 
     switch (response!.status) {
       case StatusCode.InternalServerError: {
-        throw new InternalServerError(response!, response!.status);
+        throw new InternalServerError(response!, response?.status ?? 500);
       }
       case StatusCode.Forbidden: {
-        throw new ForbiddenError(response!, response!.status);
+        throw new ForbiddenError(response!, response!.status ?? 401);
       }
       case StatusCode.NotFound: {
-        throw new NotFoundError(response!, response!.status);
+        throw new NotFoundError(response!, response!.status ?? 404);
       }
       case StatusCode.BadRequest: {
-        throw new BadRequest(response!, response!.status);
+        throw new BadRequest(response!, response?.status ?? 400);
       }
     }
 
