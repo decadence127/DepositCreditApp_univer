@@ -92,15 +92,15 @@ const Row: React.FC<Props> = ({bank, setReload}) => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                Clients
+                Клиенты
               </Typography>
               <Table size="small" aria-label="banks">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Client's Id</TableCell>
-                    <TableCell>Client's Name</TableCell>
-                    <TableCell align="right">Client's email</TableCell>
-                    <TableCell align="right">Client's balance</TableCell>
+                    <TableCell>ID Клиента</TableCell>
+                    <TableCell>Имя клиента</TableCell>
+                    <TableCell align="right">E-mail клиента</TableCell>
+                    <TableCell align="right">Баланс клиента</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -113,9 +113,9 @@ const Row: React.FC<Props> = ({bank, setReload}) => {
                       <TableCell align="right">{clientRow.email}</TableCell>
                       <TableCell align="right">{clientRow.balance}</TableCell>
                     </TableRow>
-                  ))}</> : <TableCell colSpan={4}><Typography textAlign="center">No clients yet</Typography></TableCell> }</> : <CircularProgress />}
+                  ))}</> : <TableCell colSpan={4}><Typography textAlign="center">Клиентов еще нет</Typography></TableCell> }</> : <CircularProgress />}
                             <TableRow sx={{"&:hover": {cursor: "pointer", backgroundColor:"#fafafa"}}}>
-                                <TableCell colSpan={4} onClick={event => addClientHandler(event)}><Typography textAlign="center" fontWeight="700">Add</Typography></TableCell>
+                                <TableCell colSpan={4} onClick={event => addClientHandler(event)}><Typography textAlign="center" fontWeight="700">Добавить</Typography></TableCell>
                             </TableRow>
                 </TableBody>
               </Table>

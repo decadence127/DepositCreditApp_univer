@@ -43,8 +43,7 @@ class Http {
 
  handleError(error: AxiosError<ServerError>) { 
     const { response } = error;
-    
-
+  
     switch (response!.status) {
       case StatusCode.InternalServerError: {
         throw new InternalServerError(response!, response!.status);

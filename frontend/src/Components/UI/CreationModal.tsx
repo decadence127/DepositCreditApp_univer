@@ -81,7 +81,7 @@ const ClientModal: React.FC<Props> = ({ setReload, bankId, setOpen, isOpen}) => 
             <TextField value={client.residence} onChange={e=> setClient({...client, residence: e.target.value!})} id="standard-basic" label="Город прописки" variant="standard"/>
             <TextField value={client.monthlyIncome} onChange={e=> setClient({...client, monthlyIncome: e.target.value!})} id="standard-basic" label="Месячный доход" variant="standard"/>
             <TextField value={client.balance} onChange={e=> setClient({...client, balance: e.target.value!})} id="standard-basic" label="Начальный баланс" variant="standard"/>
-            <Button sx={{my: 3}}variant="outlined" onClick={event => addButtonHandler(event)}>Добавить</Button>
+            <Button color="success" sx={{my: 3}}variant="contained" onClick={event => addButtonHandler(event)}>Добавить</Button>
           </Box>
         </Fade>
       </Modal>

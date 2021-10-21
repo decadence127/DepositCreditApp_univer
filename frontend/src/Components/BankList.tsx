@@ -30,9 +30,9 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
         <TableHead>
           <TableRow>
             <TableCell/>
-            <TableCell component="th" scope="row">Bank ID</TableCell>
-            <TableCell align="left">Bank Name</TableCell>
-            <TableCell align="right">Bank Balance</TableCell>
+            <TableCell component="th" scope="row">ID Банка</TableCell>
+            <TableCell align="left">Банк</TableCell>
+            <TableCell align="right">Текущий баланс банка</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,6 +40,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
         </TableBody>
       </Table>      
       <TablePagination
+          labelRowsPerPage='Кол-во строк на странице'
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={banks!.length}

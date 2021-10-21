@@ -1,5 +1,6 @@
-import axios, { AxiosError, AxiosRequestHeaders } from "axios";
-import { BadRequest, ServerError, StatusCode } from "../apiService/errorHandler/ErrorResponse";
+import axios, { AxiosError } from "axios";
+import { useSnackbar } from "notistack";
+import { ServerError } from "../apiService/errorHandler/ErrorResponse";
 import { http } from "../apiService/useAxios";
 import { BASE_URL, CLIENT } from "../Utils/ApiRoutes";
 
@@ -39,7 +40,7 @@ export const fetchBankClients = async(id:string | undefined):Promise<any> =>{
   }catch(error){
     if (axios.isAxiosError(error)) {
       const serverError = error as AxiosError<ServerError>;
-        http.handleError(serverError)
+        http.handleError(serverError);
     }
   }
 }

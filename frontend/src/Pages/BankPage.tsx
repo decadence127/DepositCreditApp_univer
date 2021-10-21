@@ -6,6 +6,8 @@ import { AccountChart, fetchAccountCharts } from '../queryHandlers/accountChart'
 import BankList from '../Components/BankList';
 import { Bank, fetchBanks } from '../queryHandlers/bankQuery';
 import { LinearProgress } from '@mui/material';
+import { ServerError } from '../apiService/errorHandler/ErrorResponse';
+
 
 const BankPage: React.FC = () => {
   const [banks, setBanks] = useState<Bank[]>();
@@ -15,11 +17,15 @@ const BankPage: React.FC = () => {
 
   useEffect(()=>{
     const fetchData = async() =>{
-      const charts = await fetchAccountCharts();
-      const banks = await fetchBanks();
-      setAccountCharts(charts);
-      setBanks(banks)
-      setLoading(false)
+      try{
+        const charts = await fetchAccountCharts();
+        const banks = await fetchBanks();
+        setAccountCharts(charts);
+        setBanks(banks)
+        setLoading(false)
+      }catch(error){
+        console.log(error);
+      }
     }
 
     fetchData();
@@ -38,3 +44,7 @@ const BankPage: React.FC = () => {
 };
 
 export default BankPage;
+
+function AxiosError<T>() {
+  throw new Error('Function not implemented.');
+}
