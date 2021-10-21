@@ -32,8 +32,12 @@ const CreditBox: React.FC<Props> = ({ credit, client }) => {
       <Typography>
         Дата окончания: {credit.activeBefore.datePrettier()}
       </Typography>
-      <Typography>Сумма кредита: {credit.creditBalance}</Typography>
-      <Typography>Долг по оплате: {credit.paymentsLeft}</Typography>
+      <Typography>
+        Сумма кредита: {Number.parseFloat(credit.creditBalance).toFixed(2)} руб.
+      </Typography>
+      <Typography>
+        Долг по оплате: {Number.parseFloat(credit.paymentsLeft).toFixed(2)} руб.
+      </Typography>
       <Typography>Счет активен: {credit.isActive ? "Да" : "Нет"}</Typography>
       <Button
         onClick={rechargeHandler}

@@ -31,6 +31,7 @@ export const postDeposit = async (
       const serverError = error as AxiosError<ServerError>;
       http.handleError(serverError);
     }
+    console.log(error);
   }
 };
 export const rechargeDeposit = async (

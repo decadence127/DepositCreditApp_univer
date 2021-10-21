@@ -86,7 +86,7 @@ const Row: React.FC<Props> = ({ bank, setReload }) => {
           {bank.id}
         </TableCell>
         <TableCell align="left">{bank.bankTitle}</TableCell>
-        <TableCell align="right">{bank.balance}</TableCell>
+        <TableCell align="right">{bank.balance.toFixed(2)} руб.</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -130,7 +130,7 @@ const Row: React.FC<Props> = ({ bank, setReload }) => {
                                 {clientRow.email}
                               </TableCell>
                               <TableCell align="right">
-                                {clientRow.balance}
+                                {clientRow.balance} руб.
                               </TableCell>
                             </TableRow>
                           ))}

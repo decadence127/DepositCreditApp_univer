@@ -26,6 +26,20 @@ const reverseMonth: { [key: string]: string } = {
   "11": "Nov",
   "12": "Dec",
 };
+const reverseMonthRus: { [key: string]: string } = {
+  "01": "Янв",
+  "02": "Фев",
+  "03": "Мар",
+  "04": "Апр",
+  "05": "Май",
+  "06": "Июн",
+  "07": "Июл",
+  "08": "Авг",
+  "09": "Сен",
+  "10": "Окт",
+  "11": "Ноя",
+  "12": "Дек",
+};
 
 export function dateFormatter(str: string): string {
   let formattedString;
@@ -44,14 +58,16 @@ String.prototype.datePrettier = function (): string {
   prettyDate = that.substr(8, 2).startsWith("0")
     ? that.substr(9, 1) +
       " " +
-      reverseMonth[that.substr(5, 2)] +
+      reverseMonthRus[that.substr(5, 2)] +
       " " +
-      that.substr(0, 4)
+      that.substr(0, 4) +
+      " г."
     : that.substr(8, 2) +
       " " +
-      reverseMonth[that.substr(5, 2)] +
+      reverseMonthRus[that.substr(5, 2)] +
       " " +
-      that.substr(0, 4);
+      that.substr(0, 4) +
+      " г.";
 
   return prettyDate;
 };

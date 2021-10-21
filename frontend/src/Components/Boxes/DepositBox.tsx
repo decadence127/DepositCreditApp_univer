@@ -36,14 +36,19 @@ export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
       <Typography>
         Дата окончания: {deposit.activeBefore.datePrettier()}
       </Typography>
-      <Typography>Сумма депозита: {deposit.depositBalance}</Typography>
+      <Typography>
+        Сумма депозита: {Number.parseFloat(deposit.depositBalance).toFixed(2)}{" "}
+        руб.
+      </Typography>
       <Typography>Счет активен: {deposit.isActive ? "Да" : "Нет"}</Typography>
       <Typography>
         Счет Вклада:{" "}
         <span style={{ fontWeight: "bold" }}>{deposit.interestAccount.id}</span>
       </Typography>
       <Typography>
-        Сумма дохода: {deposit.interestAccount.balanceCharge}
+        Сумма дохода:{" "}
+        {Number.parseFloat(deposit.interestAccount.balanceCharge).toFixed(2)}{" "}
+        руб.
       </Typography>
       <Button
         onClick={rechargeHandler}

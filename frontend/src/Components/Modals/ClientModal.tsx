@@ -59,13 +59,13 @@ const ClientModal: React.FC<Props> = ({
               E-mail: {client.email}
             </Typography>
             <Typography id="income-typography-modal-description">
-              Месячный доход: {client.monthlyIncome}
+              Месячный доход: {client.monthlyIncome.toFixed(2)} руб.
             </Typography>
             <Typography id="phone-typography-modal-description">
               Номер телефона: {client.phone}
             </Typography>
             <Typography id="currentBalance-typography-modal-description">
-              Текущий баланс: {client.balance}
+              Текущий баланс: {client.balance.toFixed(2)} руб.
             </Typography>
             <Typography sx={{ mb: 3 }} id="city-typography-modal-description">
               Город прописки: {client.residence}
