@@ -29,15 +29,19 @@ export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
         border: "1px dashed grey",
       }}
     >
-      <Typography style={{ fontWeight: "bold" }}>
-        <span style={{ fontWeight: "normal" }}>Номер счета:</span>
-        {deposit.id}
+      <Typography>
+        Номер счета: <span style={{ fontWeight: "bold" }}>{deposit.id}</span>
       </Typography>
       <Typography>Тип депозита: {deposit.accountChart.chartName}</Typography>
-      <Typography>Дата окончания: {deposit.activeBefore}</Typography>
+      <Typography>
+        Дата окончания: {deposit.activeBefore.datePrettier()}
+      </Typography>
       <Typography>Сумма депозита: {deposit.depositBalance}</Typography>
       <Typography>Счет активен: {deposit.isActive ? "Да" : "Нет"}</Typography>
-      <Typography>Счет Вклада: {deposit.interestAccount.id}</Typography>
+      <Typography>
+        Счет Вклада:{" "}
+        <span style={{ fontWeight: "bold" }}>{deposit.interestAccount.id}</span>
+      </Typography>
       <Typography>
         Сумма дохода: {deposit.interestAccount.balanceCharge}
       </Typography>

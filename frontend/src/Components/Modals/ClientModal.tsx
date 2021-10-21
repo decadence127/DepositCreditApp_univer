@@ -31,8 +31,8 @@ const ClientModal: React.FC<Props> = ({
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
         open={isOpen}
         onClose={handleClose}
         closeAfterTransition
@@ -46,47 +46,56 @@ const ClientModal: React.FC<Props> = ({
             <Typography id="transition-modal-title" variant="h6" component="h2">
               {client.name}
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Дата рождения: {client.birthDate}
+            <Typography
+              id="birthdate-typography-modal-description"
+              sx={{ mt: 2 }}
+            >
+              Дата рождения: {client.birthDate.datePrettier()}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography id="passport-typography-modal-description">
               Серия и номер паспорта: {client.passport}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography id="email-typography-modal-description">
               E-mail: {client.email}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography id="income-typography-modal-description">
               Месячный доход: {client.monthlyIncome}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography id="phone-typography-modal-description">
               Номер телефона: {client.phone}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography id="currentBalance-typography-modal-description">
               Текущий баланс: {client.balance}
             </Typography>
-            <Typography sx={{ mb: 3 }} id="transition-modal-description">
+            <Typography sx={{ mb: 3 }} id="city-typography-modal-description">
               Город прописки: {client.residence}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography
+              id="creditHeader-typography-modal-description"
+              variant="h6"
+            >
               Кредитные счета:
               {client.creditAccounts.length ? (
                 client.creditAccounts.map((credit) => (
                   <CreditBox credit={credit} client={client} />
                 ))
               ) : (
-                <Typography id="transition-modal-description">
+                <Typography id="isEmpty-typography-modal-description">
                   Отсутствуют
                 </Typography>
               )}
             </Typography>
-            <Typography id="transition-modal-description">
+            <Typography
+              id="depositHeader-typography-modal-description"
+              variant="h6"
+            >
               Депозитные счета:
               {client.depositAccounts.length ? (
                 client.depositAccounts.map((deposit) => (
                   <DepositBox deposit={deposit} client={client} />
                 ))
               ) : (
-                <Typography id="transition-modal-description">
+                <Typography id="isEmpty-typography-modal-description">
                   Отсутствуют
                 </Typography>
               )}

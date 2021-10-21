@@ -57,6 +57,7 @@ const Row: React.FC<Props> = ({ bank, setReload }) => {
     const foundClient = clients!.find(
       (client) => client.id === e.currentTarget.textContent
     );
+
     setCurrentClient(foundClient);
     setOpenModal(true);
   };

@@ -25,12 +25,13 @@ const CreditBox: React.FC<Props> = ({ credit, client }) => {
         border: "1px dashed grey",
       }}
     >
-      <Typography style={{ fontWeight: "bold" }}>
-        <span style={{ fontWeight: "normal" }}>Номер счета:</span>
-        {credit.id}
+      <Typography>
+        Номер счета: <span style={{ fontWeight: "bold" }}>{credit.id}</span>
       </Typography>
       <Typography>Тип кредита: {credit.accountChart.chartName}</Typography>
-      <Typography>Дата окончания: {credit.activeBefore}</Typography>
+      <Typography>
+        Дата окончания: {credit.activeBefore.datePrettier()}
+      </Typography>
       <Typography>Сумма кредита: {credit.creditBalance}</Typography>
       <Typography>Долг по оплате: {credit.paymentsLeft}</Typography>
       <Typography>Счет активен: {credit.isActive ? "Да" : "Нет"}</Typography>

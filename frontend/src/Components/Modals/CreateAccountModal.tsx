@@ -91,6 +91,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
   };
   switch (type) {
     case "Credit": {
+      // Extract this component
       component = (
         <Modal
           hideBackdrop
@@ -178,6 +179,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
       break;
     }
     case "Deposit": {
+      // Extract this component
       component = (
         <Modal
           hideBackdrop
