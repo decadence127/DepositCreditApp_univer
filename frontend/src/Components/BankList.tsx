@@ -5,6 +5,17 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import Row from "./UI/TableRow"
 import AddBankCard from './UI/AddBankCard';
 import TablePagination from '@mui/material/TablePagination';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ruRU } from '@mui/material/locale';
+
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  ruRU,
+);
 interface Props{
   banks?: Bank[],
   accountCharts?: AccountChart[],
@@ -25,6 +36,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <TableContainer component={Paper} sx={{my: 3, minWidth: "753px", maxWidth: "100%", ['@media (max-width:800px)']:{minWidth: 0}}}>
       <Table aria-label="bank list">
         <TableHead>
@@ -40,7 +52,6 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
         </TableBody>
       </Table>      
       <TablePagination
-          labelRowsPerPage='Кол-во строк на странице'
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={banks!.length}
@@ -51,6 +62,7 @@ const BankList:React.FC<Props> = ({ banks, accountCharts, setReload }) => {
         />
       <AddBankCard setReload={setReload}/>
     </TableContainer>
+    </ThemeProvider>
   );
 
 };
