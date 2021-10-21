@@ -22,12 +22,18 @@ export const fetchBanks = async():Promise<Bank[]> =>{
 
 export const createBank = async(body: BankCreationType):Promise<any> =>
 {
-  const formData = new FormData();
-  formData.append('BankTitle', body.BankTitle)
-  formData.append('Balance', body.Balance.toString())
-  const { data } = await http.post<FormData>(BANK, formData);
-  console.log(data);
+  try{
+    const formData = new FormData();
+    formData.append('BankTitle', body.BankTitle)
+    formData.append('Balance', body.Balance.toString())
+    const { data } = await http.post<FormData>(BANK, formData);
+  
+  return data;
+  }catch(e)
+  {
+    console.log(e);
+    
+  }
 
-return data;
 
 }

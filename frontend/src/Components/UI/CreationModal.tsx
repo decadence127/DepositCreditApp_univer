@@ -43,10 +43,17 @@ const ClientModal: React.FC<Props> = ({ setReload, bankId, setOpen, isOpen}) => 
   });
   const handleClose = () => setOpen(false);
   const addButtonHandler = async(e:React.MouseEvent):Promise<any> =>{
-    const response = await postBankClient(client);
-    console.log(response);
-    setOpen(false);
-    setReload(true);
+    try{
+      const response = await postBankClient(client);
+      console.log(response.data);
+      
+      setOpen(false);
+      setReload(true);
+    }catch(e)
+    {
+
+    }
+
   }
   return (
     <div>
@@ -69,7 +76,7 @@ const ClientModal: React.FC<Props> = ({ setReload, bankId, setOpen, isOpen}) => 
             <TextField value={client.name} onChange={e=> setClient({...client, name: e.target.value!})} id="standard-basic" label="Имя клиента" variant="standard"/>
             <TextField value={client.passport} onChange={e=> setClient({...client, passport: e.target.value!})} id="standard-basic" label="Серия и номер паспорта" variant="standard"/>
             <TextField value={client.birthDate} onChange={e=> setClient({...client, birthDate: e.target.value!})} id="standard-basic" label="Дата рождения" variant="standard"/>
-            <TextField value={client.phone} onChange={e=> setClient({...client, phone: e.target.value!})} id="standard-basic" label="Номер телефона" variant="standard"/>
+            <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} value={client.phone} onChange={e=> setClient({...client, phone: e.target.value!})} id="standard-basic" label="Номер телефона" variant="standard"/>
             <TextField value={client.email} onChange={e=> setClient({...client, email: e.target.value!})} id="standard-basic" label="E-mail" variant="standard"/>
             <TextField value={client.residence} onChange={e=> setClient({...client, residence: e.target.value!})} id="standard-basic" label="Город прописки" variant="standard"/>
             <TextField value={client.monthlyIncome} onChange={e=> setClient({...client, monthlyIncome: e.target.value!})} id="standard-basic" label="Месячный доход" variant="standard"/>
