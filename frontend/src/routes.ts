@@ -5,10 +5,10 @@ import { BANK_ROUTE, CASHIER_ROUTE } from "./Utils/RouteNames";
 export const appRoutes = [
   {
     path: BANK_ROUTE,
-    Component: BankPage
+    Component: BankPage,
   },
   {
     path: CASHIER_ROUTE,
-    Component: CashierPage
-  }
-  ]
+    Component: CashierPage,
+  },
+];
