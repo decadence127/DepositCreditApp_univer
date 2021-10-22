@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepositKreditApp.Models.RequestModels.Credits
@@ -11,6 +12,7 @@ namespace DepositKreditApp.Models.RequestModels.Credits
         [FromRoute]
         public Guid ClientId { get; set; }
 
+        [Required]
         public double Payment { get; set; }
     }
 }

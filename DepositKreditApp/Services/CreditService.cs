@@ -99,7 +99,7 @@ namespace DepositKreditApp.Services
             credit.Client.Bank.Balance += payingSize;
             credit.Client.Balance -= payingSize;
 
-            if (credit.CreditMonthlyPayment.MonthlyPayment == 0 && credit.CreditBalance == 0)
+            if (credit.CreditMonthlyPayment.PercentPayment == 0 && credit.CreditBalance == 0)
             {
                 credit.IsActive = false;
             }
@@ -142,6 +142,11 @@ namespace DepositKreditApp.Services
                 .Include(c => c.Client).ThenInclude(c => c.Bank)
                 .Include(c => c.CreditMonthlyPayment)
                 .FirstOrDefaultAsync(c => c.Id == model.CreditId && c.Client.Id == model.ClientId);
+
+            if (credit.CreditMonthlyPayment.PercentPayment == 0 && credit.CreditBalance == 0)
+            {
+                credit.IsActive = false;
+            }
 
             if (credit == null)
             {

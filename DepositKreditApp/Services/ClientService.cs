@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DepositKreditApp.Database;
+using DepositKreditApp.Filters;
 using DepositKreditApp.Helper;
 using DepositKreditApp.Models.RequestModels.Clients;
 using DepositKreditApp.Services.Interfaces;
@@ -40,7 +41,7 @@ namespace DepositKreditApp.Services
 
             if (bank == null)
             {
-                throw new Exception("Bank not found");
+                throw new AppException("Bank not found");
             }
 
             var client = Mapper.Map<Client>(model);
