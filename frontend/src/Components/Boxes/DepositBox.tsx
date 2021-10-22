@@ -8,10 +8,10 @@ import {
   closeDeposit,
 } from "../../queryHandlers/depositQuery";
 
-interface Props {
+type Props = {
   deposit: GetDeposit;
   client: Client;
-}
+};
 
 export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
   const rechargeHandler = async (e: React.MouseEvent) => {
@@ -25,6 +25,8 @@ export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
   return (
     <Box
       sx={{
+        marginTop: 1,
+        marginBottom: 1,
         p: 2,
         border: "1px dashed grey",
       }}

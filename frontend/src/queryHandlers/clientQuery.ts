@@ -54,7 +54,6 @@ export const fetchBankClients = async (
 ): Promise<any> => {
   try {
     const { data } = await http.get<Client[]>(BASE_URL + id + CLIENT);
-    console.log(data);
 
     return data;
   } catch (error) {
@@ -80,6 +79,63 @@ export const postBankClient = async (
     formData.append("BankId", client.bankId);
     const { data } = await http.post<FormData>(CLIENT, formData);
     console.log(data);
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};
+export const fetchClient = async (clientId: string) => {
+  try {
+    const { data } = await http.get<Client>(
+      BASE_URL + "Clients" + "/" + clientId
+    );
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};
+export const withdrawCash = async (
+  pinCode: string,
+  moneyAmount: number,
+  clientId: string
+) => {
+  try {
+    const formData = new FormData();
+    formData.append("Pin", pinCode);
+    formData.append("TotalSum", moneyAmount.toString());
+    const { data } = await http.post<FormData>(
+      BASE_URL + "Clients" + "/" + clientId + "/SubstractBalance",
+      formData
+    );
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const serverError = error as AxiosError<ServerError>;
+      http.handleError(serverError);
+    }
+  }
+};
+export const appendCash = async (
+  pinCode: string,
+  moneyAmount: number,
+  clientId: string
+) => {
+  try {
+    const formData = new FormData();
+    formData.append("Pin", pinCode);
+    formData.append("TotalSum", moneyAmount.toString());
+    const { data } = await http.post<FormData>(
+      BASE_URL + "Clients" + "/" + clientId + "/AppendBalance",
+      formData
+    );
 
     return data;
   } catch (error) {

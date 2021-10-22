@@ -5,10 +5,10 @@ import { Typography } from "@material-ui/core";
 import CreditPaymentModal from "../Modals/CreditPaymentModal";
 import { Button } from "@mui/material";
 import { rechargeCredit } from "../../queryHandlers/creditQuery";
-interface Props {
+type Props = {
   credit: GetCredit;
   client: Client;
-}
+};
 
 const CreditBox: React.FC<Props> = ({ credit, client }) => {
   const rechargeHandler = async (e: React.MouseEvent): Promise<any> => {
