@@ -8,10 +8,10 @@ import {
   closeDeposit,
 } from "../../queryHandlers/depositQuery";
 
-interface Props {
+type Props = {
   deposit: GetDeposit;
   client: Client;
-}
+};
 
 export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
   const rechargeHandler = async (e: React.MouseEvent) => {
