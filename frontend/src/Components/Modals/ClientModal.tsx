@@ -70,15 +70,22 @@ const ClientModal: React.FC<Props> = ({
             <Typography sx={{ mb: 3 }} id="city-typography-modal-description">
               Город прописки: {client.residence}
             </Typography>
+            <CreateAccountModal clientId={client.id} />
+
             <Typography
               id="creditHeader-typography-modal-description"
               variant="h6"
             >
+              {" "}
               Кредитные счета:
               {client.creditAccounts.length ? (
-                client.creditAccounts.map((credit) => (
-                  <CreditBox credit={credit} client={client} />
-                ))
+                client.creditAccounts
+                  .sort((a, b) => {
+                    return Number(b.isActive) - Number(a.isActive);
+                  })
+                  .map((credit) => (
+                    <CreditBox credit={credit} client={client} />
+                  ))
               ) : (
                 <Typography id="isEmpty-typography-modal-description">
                   Отсутствуют
@@ -91,16 +98,19 @@ const ClientModal: React.FC<Props> = ({
             >
               Депозитные счета:
               {client.depositAccounts.length ? (
-                client.depositAccounts.map((deposit) => (
-                  <DepositBox deposit={deposit} client={client} />
-                ))
+                client.depositAccounts
+                  .sort((a, b) => {
+                    return Number(b.isActive) - Number(a.isActive);
+                  })
+                  .map((deposit) => (
+                    <DepositBox deposit={deposit} client={client} />
+                  ))
               ) : (
                 <Typography id="isEmpty-typography-modal-description">
                   Отсутствуют
                 </Typography>
               )}
             </Typography>
-            <CreateAccountModal clientId={client.id} />
           </Box>
         </Fade>
       </Modal>

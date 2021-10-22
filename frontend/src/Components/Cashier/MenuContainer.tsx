@@ -29,11 +29,23 @@ const MenuContainer: React.FC<Props> = ({ reload, client, exit }) => {
   };
   const withdrawHandler = (e: React.MouseEvent) => {
     setReturnPage(true);
-    setActionProps(<WithdrawAction reload={reload} clientId={client.id} />);
+    setActionProps(
+      <WithdrawAction
+        exit={returnHandler}
+        reload={reload}
+        clientId={client.id}
+      />
+    );
   };
   const depositHandler = (e: React.MouseEvent) => {
     setReturnPage(true);
-    setActionProps(<DepositAction reload={reload} clientId={client.id} />);
+    setActionProps(
+      <DepositAction
+        exit={returnHandler}
+        reload={reload}
+        clientId={client.id}
+      />
+    );
   };
 
   return (

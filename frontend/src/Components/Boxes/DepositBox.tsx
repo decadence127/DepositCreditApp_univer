@@ -28,46 +28,54 @@ export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
         marginTop: 1,
         marginBottom: 1,
         p: 2,
-        border: "1px dashed grey",
+        border: deposit.isActive ? "1px dashed black" : "1px dashed grey",
       }}
     >
-      <Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
         Номер счета: <span style={{ fontWeight: "bold" }}>{deposit.id}</span>
       </Typography>
-      <Typography>Тип депозита: {deposit.accountChart.chartName}</Typography>
-      <Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
+        Тип депозита: {deposit.accountChart.chartName}
+      </Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
         Дата окончания: {deposit.activeBefore.datePrettier()}
       </Typography>
-      <Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
         Сумма депозита: {Number.parseFloat(deposit.depositBalance).toFixed(2)}{" "}
         руб.
       </Typography>
-      <Typography>Счет активен: {deposit.isActive ? "Да" : "Нет"}</Typography>
-      <Typography>
-        Счет Вклада:{" "}
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
+        Счет активен: {deposit.isActive ? "Да" : "Нет"}
+      </Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
+        Счет вклада:{" "}
         <span style={{ fontWeight: "bold" }}>{deposit.interestAccount.id}</span>
       </Typography>
-      <Typography>
+      <Typography color={deposit.isActive ? "textPrimary" : "textSecondary"}>
         Сумма дохода:{" "}
         {Number.parseFloat(deposit.interestAccount.balanceCharge).toFixed(2)}{" "}
         руб.
       </Typography>
-      <Button
-        onClick={rechargeHandler}
-        sx={{ mr: 2, mt: 2 }}
-        variant="outlined"
-        color="warning"
-      >
-        Закрыть банковский месяц
-      </Button>
-      <Button
-        onClick={closeDepositHandler}
-        sx={{ ml: 8, mt: 2 }}
-        variant="outlined"
-        color="error"
-      >
-        Закрыть депозит
-      </Button>
+      {deposit.isActive && (
+        <>
+          <Button
+            onClick={rechargeHandler}
+            sx={{ mr: 2, mt: 2 }}
+            variant="outlined"
+            color="warning"
+          >
+            Закрыть банковский месяц
+          </Button>
+          <Button
+            onClick={closeDepositHandler}
+            sx={{ ml: 8, mt: 2 }}
+            variant="outlined"
+            color="error"
+          >
+            Закрыть депозит
+          </Button>
+        </>
+      )}
     </Box>
   );
 };

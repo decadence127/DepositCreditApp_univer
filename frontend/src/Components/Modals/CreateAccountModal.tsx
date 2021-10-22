@@ -10,6 +10,7 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -124,9 +125,11 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   {accountCharts
                     ?.filter((chart) => chart.accountType === 2)
                     .map((chart) => (
-                      <MenuItem value={chart.id} key={chart.chartName}>
-                        {chart.chartName}
-                      </MenuItem>
+                      <Tooltip title={`${chart.accountingPercent} %`}>
+                        <MenuItem value={chart.id} key={chart.chartName}>
+                          {chart.chartName}
+                        </MenuItem>
+                      </Tooltip>
                     ))}
                 </Select>
               </FormControl>
@@ -149,12 +152,14 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   sx={{ m: 5, width: 300 }}
                   value={currentCredit.creditBalance}
-                  onChange={(e) =>
-                    setCurrentCredit({
-                      ...currentCredit,
-                      creditBalance: e.target.value!,
-                    })
-                  }
+                  onChange={(e) => {
+                    e.target.value[0] === "-"
+                      ? (e.target.value = "")
+                      : setCurrentCredit({
+                          ...currentCredit,
+                          creditBalance: e.target.value!,
+                        });
+                  }}
                   id="standard-basic"
                   label="Сумма кредита"
                   variant="outlined"
@@ -212,9 +217,11 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   {accountCharts
                     ?.filter((chart) => chart.accountType === 1)
                     .map((chart) => (
-                      <MenuItem value={chart.id} key={chart.chartName}>
-                        {chart.chartName}
-                      </MenuItem>
+                      <Tooltip title={`${chart.accountingPercent} %`}>
+                        <MenuItem value={chart.id} key={chart.chartName}>
+                          {chart.chartName}
+                        </MenuItem>
+                      </Tooltip>
                     ))}
                 </Select>
               </FormControl>
@@ -238,15 +245,17 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
               </LocalizationProvider>
               <TextField
                 type="number"
-                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                inputProps={{ inputMode: "numeric", pattern: "/[^0-9]/g" }}
                 sx={{ mb: 5, width: 300 }}
                 value={currentDeposit.depositBalance}
-                onChange={(e) =>
-                  setCurrentDeposit({
-                    ...currentDeposit,
-                    depositBalance: e.target.value!,
-                  })
-                }
+                onChange={(e) => {
+                  e.target.value[0] === "-"
+                    ? (e.target.value = "")
+                    : setCurrentDeposit({
+                        ...currentDeposit,
+                        depositBalance: e.target.value!,
+                      });
+                }}
                 id="standard-basic"
                 label="Сумма депозита"
                 variant="outlined"
@@ -277,7 +286,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
 
   return (
     <React.Fragment>
-      <Box mt={3} display="flex" justifyContent="space-between" gap={3}>
+      <Box mt={3} mb={3} display="flex" justifyContent="space-between" gap={3}>
         <Button
           onClick={clickHandlerDeposit}
           variant="contained"

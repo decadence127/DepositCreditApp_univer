@@ -5,8 +5,9 @@ import { appendCash } from "../../queryHandlers/clientQuery";
 type Props = {
   clientId: string;
   reload: Function;
+  exit: React.Dispatch<React.SetStateAction<boolean>>;
 };
-const DepositAction: React.FC<Props> = ({ reload, clientId }) => {
+const DepositAction: React.FC<Props> = ({ exit, reload, clientId }) => {
   const [depositingData, setDepositingData] = React.useState({
     pinCode: "",
     moneyAmount: 0,
@@ -18,26 +19,38 @@ const DepositAction: React.FC<Props> = ({ reload, clientId }) => {
       clientId
     );
     reload();
+    exit(true);
     console.log(response);
   };
   return (
     <>
       <TextField
         type="number"
-        onChange={(e) =>
-          setDepositingData({
-            ...depositingData,
-            moneyAmount: Number.parseInt(e.target.value),
-          })
-        }
+        InputProps={{
+          inputProps: {
+            min: 1,
+          },
+        }}
+        onChange={(e) => {
+          e.target.value[0] === "-"
+            ? (e.target.value = "")
+            : setDepositingData({
+                ...depositingData,
+                moneyAmount: Number.parseInt(e.target.value),
+              });
+        }}
         placeholder="Введите кол-во денег"
       />
       <TextField
         type="number"
         sx={{ marginTop: 1 }}
-        onChange={(e) =>
-          setDepositingData({ ...depositingData, pinCode: e.target.value })
-        }
+        onChange={(e) => {
+          e.target.value[0] === "-"
+            ? (e.target.value = "")
+            : e.target.value.length > 4
+            ? (e.target.value = e.target.value.slice(0, 4))
+            : setDepositingData({ ...depositingData, pinCode: e.target.value });
+        }}
         placeholder="Введите PIN-код"
       />
       <Button
