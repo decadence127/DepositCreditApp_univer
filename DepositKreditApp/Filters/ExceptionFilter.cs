@@ -11,7 +11,7 @@ namespace DepositKreditApp.Filters
 
             switch (exceptionType.Name)
             {
-                case nameof(AppException): { HandleException(context, 404); break; }
+                case nameof(AppException): { HandleException(context, 500); break; }
             }
         }
 

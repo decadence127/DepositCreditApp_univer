@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DepositKreditApp.Models.RequestModels.Clients
@@ -8,8 +9,10 @@ namespace DepositKreditApp.Models.RequestModels.Clients
         [FromRoute]
         public Guid Id { get; set; }
 
+        [Required]
         public int Pin { get; set; }
 
+        [Required]
         public int TotalSum { get; set; }
     }
 }

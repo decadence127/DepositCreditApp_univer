@@ -52,6 +52,11 @@ namespace DepositKreditApp.Controllers
         {
             var client = await SqlContext.Clients.FirstOrDefaultAsync(c => c.Id == model.Id && c.PIN == model.Pin);
 
+            if (model.TotalSum <= 0)
+            {
+                throw new AppException("Пополняемая сумма не может быть <= 0");
+            }
+
             if (client == null)
             {
                 return false;
@@ -66,6 +71,11 @@ namespace DepositKreditApp.Controllers
         [HttpPost("{Id}/SubstractBalance")]
         public async Task<bool> SubstractClientBalance([FromForm] SubstractClientBalanceRequestModel model)
         {
+            if (model.Pin <= 1000 || model.Pin > 9999)
+            {
+                throw new AppException("ПИН код должен быть 4-значным числом");
+            }
+
             var client = await SqlContext.Clients.FirstOrDefaultAsync(c => c.Id == model.Id && c.PIN == model.Pin);
 
             if (client == null)

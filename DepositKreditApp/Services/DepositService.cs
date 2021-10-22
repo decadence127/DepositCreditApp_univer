@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DepositKreditApp.Database;
 using DepositKreditApp.Enums;
+using DepositKreditApp.Filters;
 using DepositKreditApp.Models.RequestModels.Deposits;
 using DepositKreditApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -30,19 +31,19 @@ namespace DepositKreditApp.Services
 
             if (client == null)
             {
-                throw new Exception("Client was not found");
+                throw new AppException("Client was not found");
             }
 
             if (client.Balance < model.DepositBalance)
             {
-                throw new Exception("Баланс клиента меньше вкладываемого депозита");
+                throw new AppException("Баланс клиента меньше вкладываемого депозита");
             }
 
             var accountChart = await SqlContext.AccountCharts.FirstOrDefaultAsync(c => c.Id == model.AccountChartId && c.AccountType == AccountType.Deposit);
 
             if (accountChart == null)
             {
-                throw new Exception("Account chart was not found");
+                throw new AppException("Account chart was not found");
             }
 
             var deposit = Mapper.Map<DepositAccount>(model);
@@ -79,7 +80,7 @@ namespace DepositKreditApp.Services
 
             if (deposit == null || !deposit.IsActive)
             {
-                throw new Exception("Данный депозит не найден, либо его срок действия окончен");
+                throw new AppException("Данный депозит не найден, либо его срок действия окончен");
             }
 
             double totalDepositBalance = deposit.DepositBalance + deposit.InterestAccount.BalanceCharge;
@@ -103,7 +104,7 @@ namespace DepositKreditApp.Services
 
             if (deposit == null || !deposit.IsActive)
             {
-                throw new Exception("Данный депозит не найден, либо его срок действия окончен");
+                throw new AppException("Данный депозит не найден, либо его срок действия окончен");
             }
 
             double totalDepositBalance = deposit.DepositBalance;

@@ -4,6 +4,6 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>D:\bsuir\3 курс\1 сем\РППЗЛ\LR345\DepositKreditApp\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Learning\DepositCreditApp_univer\DepositKreditApp\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
   </PropertyGroup>
 </Project>
