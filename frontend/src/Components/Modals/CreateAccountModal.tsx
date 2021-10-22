@@ -148,6 +148,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   )}
                 />
                 <TextField
+                  required={true}
                   type="number"
                   inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   sx={{ m: 5, width: 300 }}
@@ -244,6 +245,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                 />
               </LocalizationProvider>
               <TextField
+                required={true}
                 type="number"
                 inputProps={{ inputMode: "numeric", pattern: "/[^0-9]/g" }}
                 sx={{ mb: 5, width: 300 }}

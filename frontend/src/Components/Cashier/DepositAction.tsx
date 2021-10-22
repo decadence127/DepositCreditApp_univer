@@ -25,6 +25,7 @@ const DepositAction: React.FC<Props> = ({ exit, reload, clientId }) => {
   return (
     <>
       <TextField
+        required={true}
         type="number"
         InputProps={{
           inputProps: {
@@ -42,6 +43,7 @@ const DepositAction: React.FC<Props> = ({ exit, reload, clientId }) => {
         placeholder="Введите кол-во денег"
       />
       <TextField
+        required={true}
         type="number"
         sx={{ marginTop: 1 }}
         onChange={(e) => {
