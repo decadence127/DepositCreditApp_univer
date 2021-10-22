@@ -66,6 +66,7 @@ const BankCreationModal: React.FC<Props> = ({ setReload, setOpen, isOpen }) => {
               Введите данные
             </Typography>
             <TextField
+              required={true}
               value={bankTitle}
               onChange={(e) => setBankTitle(e.target.value!)}
               id="standard-basic"
@@ -73,9 +74,14 @@ const BankCreationModal: React.FC<Props> = ({ setReload, setOpen, isOpen }) => {
               variant="standard"
             />
             <TextField
+              required={true}
               type="number"
               value={bankBalance}
-              onChange={(e) => setBankBalance(Number(e.target.value!))}
+              onChange={(e) => {
+                e.target.value[0] === "-"
+                  ? (e.target.value = "")
+                  : setBankBalance(Number(e.target.value!));
+              }}
               id="standard-basic"
               label="Текущий баланс банка"
               variant="standard"

@@ -64,6 +64,7 @@ const ClientModal: React.FC<Props> = ({
               Добавление клиента
             </Typography>
             <TextField
+              required={true}
               value={client.name}
               onChange={(e) => setClient({ ...client, name: e.target.value! })}
               id="standard-basic"
@@ -71,6 +72,7 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              required={true}
               value={client.passport}
               onChange={(e) =>
                 setClient({ ...client, passport: e.target.value! })
@@ -80,6 +82,7 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              required={true}
               value={client.birthDate}
               onChange={(e) =>
                 setClient({ ...client, birthDate: e.target.value! })
@@ -89,6 +92,8 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              type="tel"
+              required={true}
               inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
               value={client.phone}
               onChange={(e) => setClient({ ...client, phone: e.target.value! })}
@@ -97,6 +102,8 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              type="email"
+              required={true}
               value={client.email}
               onChange={(e) => setClient({ ...client, email: e.target.value! })}
               id="standard-basic"
@@ -104,6 +111,7 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              required={true}
               value={client.residence}
               onChange={(e) =>
                 setClient({ ...client, residence: e.target.value! })
@@ -113,19 +121,27 @@ const ClientModal: React.FC<Props> = ({
               variant="standard"
             />
             <TextField
+              type="number"
+              required={true}
               value={client.monthlyIncome}
-              onChange={(e) =>
-                setClient({ ...client, monthlyIncome: e.target.value! })
-              }
+              onChange={(e) => {
+                e.target.value[0] === "-"
+                  ? (e.target.value = "")
+                  : setClient({ ...client, monthlyIncome: e.target.value! });
+              }}
               id="standard-basic"
               label="Месячный доход"
               variant="standard"
             />
             <TextField
+              type="number"
+              required={true}
               value={client.balance}
-              onChange={(e) =>
-                setClient({ ...client, balance: e.target.value! })
-              }
+              onChange={(e) => {
+                e.target.value[0] === "-"
+                  ? (e.target.value = "")
+                  : setClient({ ...client, balance: e.target.value! });
+              }}
               id="standard-basic"
               label="Начальный баланс"
               variant="standard"

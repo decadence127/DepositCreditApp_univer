@@ -53,7 +53,7 @@ const CreditPaymentModal: React.FC<Props> = ({ clientId, creditId }) => {
             value={number}
             onChange={(e) => setNumber(Number.parseInt(e.target.value!))}
             id="standard-basic"
-            label="Сумма депозита"
+            label="Сумма взноса"
             variant="outlined"
           />
           <Button

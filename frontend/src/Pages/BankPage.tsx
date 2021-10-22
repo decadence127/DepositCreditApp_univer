@@ -16,7 +16,6 @@ const BankPage: React.FC = () => {
       try {
         const banks = await fetchBanks();
         setBanks(banks);
-        console.log(String.prototype);
 
         setLoading(false);
       } catch (error) {
