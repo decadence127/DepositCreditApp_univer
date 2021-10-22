@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.innerContainer {
+  justify-self: center;
+  width: 600px;
+  height: 400px;
+  border: 1px solid black;
+}
+.outerContainer {
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  display: flex;
+  width: 900px;
+  height: 700px;
+  border: 1px solid black;
+}

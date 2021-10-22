@@ -25,6 +25,8 @@ export const DepositBox: React.FC<Props> = ({ deposit, client }) => {
   return (
     <Box
       sx={{
+        marginTop: 1,
+        marginBottom: 1,
         p: 2,
         border: "1px dashed grey",
       }}
