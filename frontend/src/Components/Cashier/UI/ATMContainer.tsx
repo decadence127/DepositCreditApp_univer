@@ -1,6 +1,4 @@
 import { Typography } from "@material-ui/core";
-import { TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import React from "react";
 import AccountDataInput from "../AccountDataInput";
 import classes from "./ATMContainer.module.css";

@@ -90,9 +90,7 @@ export const postBankClient = async (
 };
 export const fetchClient = async (clientId: string) => {
   try {
-    const { data } = await http.get<Client>(
-      BASE_URL + "Clients" + "/" + clientId
-    );
+    const { data } = await http.get<Client>(BASE_URL + "Clients/" + clientId);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -111,7 +109,7 @@ export const withdrawCash = async (
     formData.append("Pin", pinCode);
     formData.append("TotalSum", moneyAmount.toString());
     const { data } = await http.post<FormData>(
-      BASE_URL + "Clients" + "/" + clientId + "/SubstractBalance",
+      BASE_URL + "Clients/" + clientId + "/SubstractBalance",
       formData
     );
 
@@ -133,7 +131,7 @@ export const appendCash = async (
     formData.append("Pin", pinCode);
     formData.append("TotalSum", moneyAmount.toString());
     const { data } = await http.post<FormData>(
-      BASE_URL + "Clients" + "/" + clientId + "/AppendBalance",
+      BASE_URL + "Clients/" + clientId + "/AppendBalance",
       formData
     );
 

@@ -68,7 +68,7 @@ const BankList: React.FC<Props> = ({ banks, setReload }) => {
             {banks
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((bank) => (
-                <Row bank={bank} setReload={setReload} />
+                <Row key={bank.id} bank={bank} setReload={setReload} />
               ))}
           </TableBody>
         </Table>

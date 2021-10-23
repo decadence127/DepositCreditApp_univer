@@ -136,15 +136,21 @@ const Row: React.FC<Props> = ({ bank, setReload }) => {
                           ))}
                         </>
                       ) : (
-                        <TableCell colSpan={4}>
-                          <Typography textAlign="center">
-                            Клиентов еще нет
-                          </Typography>
-                        </TableCell>
+                        <TableRow>
+                          <TableCell colSpan={4}>
+                            <Typography textAlign="center">
+                              Клиентов еще нет
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
                       )}
                     </>
                   ) : (
-                    <CircularProgress />
+                    <TableRow>
+                      <TableCell colSpan={4}>
+                        <CircularProgress />
+                      </TableCell>
+                    </TableRow>
                   )}
                   <TableRow
                     sx={{
