@@ -83,6 +83,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
   };
   const handleCreditRegistration = (e: React.MouseEvent) => {
     const response = postCredit(currentCredit, clientId);
+    console.log(currentCredit);
 
     console.log(response);
   };
@@ -125,11 +126,11 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   {accountCharts
                     ?.filter((chart) => chart.accountType === 2)
                     .map((chart) => (
-                      <Tooltip title={`${chart.accountingPercent} %`}>
-                        <MenuItem value={chart.id} key={chart.chartName}>
-                          {chart.chartName}
-                        </MenuItem>
-                      </Tooltip>
+                      <MenuItem value={chart.id} key={chart.chartName}>
+                        <Tooltip title={`${chart.accountingPercent} %`}>
+                          <Box>{chart.chartName}</Box>
+                        </Tooltip>
+                      </MenuItem>
                     ))}
                 </Select>
               </FormControl>
@@ -219,11 +220,11 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
                   {accountCharts
                     ?.filter((chart) => chart.accountType === 1)
                     .map((chart) => (
-                      <Tooltip title={`${chart.accountingPercent} %`}>
-                        <MenuItem value={chart.id} key={chart.chartName}>
-                          {chart.chartName}
-                        </MenuItem>
-                      </Tooltip>
+                      <MenuItem value={chart.id} key={chart.chartName}>
+                        <Tooltip title={`${chart.accountingPercent} %`}>
+                          <Box>{chart.chartName}</Box>
+                        </Tooltip>
+                      </MenuItem>
                     ))}
                 </Select>
               </FormControl>
