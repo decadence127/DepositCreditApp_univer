@@ -49,6 +49,7 @@ export function dateFormatter(str: string): string {
   return formattedString;
 }
 
+// eslint-disable-next-line no-extend-native
 String.prototype.datePrettier = function (): string {
   let prettyDate;
   let that = String(this);

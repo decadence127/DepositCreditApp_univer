@@ -1,6 +1,6 @@
-import {Button, Box, TextField} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React from "react";
-import {appendCash} from "../../queryHandlers/clientQuery";
+import { appendCash } from "../../queryHandlers/clientQuery";
 
 type Props = {
   clientId: string;

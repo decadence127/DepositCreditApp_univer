@@ -1,9 +1,4 @@
-import {
-  CircularProgress,
-  LinearProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { CircularProgress, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { Client, fetchClient } from "../../queryHandlers/clientQuery";
