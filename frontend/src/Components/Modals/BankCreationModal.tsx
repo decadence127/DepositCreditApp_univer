@@ -28,7 +28,7 @@ const style = {
 
 const BankCreationModal: React.FC<Props> = ({ setReload, setOpen, isOpen }) => {
   const [bankTitle, setBankTitle] = useState<string>();
-  const [bankBalance, setBankBalance] = useState<number>();
+  const [bankBalance, setBankBalance] = useState<number>(0);
   const clickHandler = () => {
     const response = createBank({
       BankTitle: bankTitle!,
