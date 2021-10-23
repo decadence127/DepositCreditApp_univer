@@ -135,6 +135,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
               </FormControl>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
+                  minDate={new Date()}
                   label="Дата окончания кредита"
                   value={currentCredit.activeBefore}
                   onChange={(newValue) => {
@@ -228,6 +229,7 @@ const CreateAccountModal: React.FC<Props> = ({ clientId }) => {
               </FormControl>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
+                  minDate={new Date()}
                   label="Дата окончания депозита"
                   value={currentDeposit.activeBefore}
                   onChange={(newValue) => {
